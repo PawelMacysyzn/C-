@@ -15,7 +15,7 @@ int main()
     if (dayOfWeek == "PONIEDZIALEK" || dayOfWeek == "WTOREK" || dayOfWeek == "SRODA")
         cout << "Jescze kilka dni" << endl;
     else if (dayOfWeek == "CZWARTEK")
-        cout << "Maly piątek" << endl;
+        cout << "Maly piatek" << endl;
     else if (dayOfWeek == "PIATEK")
         cout << "Juz za moment" << endl;
     else if (dayOfWeek == "SOBOTA" || dayOfWeek == "NIEDZIELA")
