@@ -7,8 +7,9 @@ int main(void)
 
     double a = 2.2;
 
-    // check variable type || sprawdzanie typu zmiennej
-    // cout << typeid((float)a).name() << endl;
+    // EN: check variable type PL: sprawdzanie typu zmiennej
+    cout << typeid((float)a).name() << endl;
+    // f
 
     return 0;
 }
