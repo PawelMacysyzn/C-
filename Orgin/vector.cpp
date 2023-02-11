@@ -13,17 +13,30 @@ int main()
     names.push_back("Mariusz");
     names.push_back("Kamil");
 
+    // cout << "Size of vector is: " << names.size() << endl;
+    // Size of vector is: 3
+
+
     // cout << names[1] << endl;
     // cout << names.at(1) << endl;
     // Mariusz
 
-    for (string name : names)
+
+    /*for (string name : names)
     {
         cout << name << endl;
     }
     // Pawel
     // Mariusz
-    // Kamil
+    // Kamil*/
+
+
+    /*for (int i=0; i<names.size(); i++)
+        cout << i << " : " << names[i] << endl;
+    // 0 : Pawel
+    // 1 : Mariusz
+    // 2 : Kamil*/
+    
 
     /*sort(names.begin(), names.end()); // alhorithm
 
@@ -31,17 +44,20 @@ int main()
         cout << name << " ";
     // Kamil Mariusz Pawel*/
 
+
     names.at(1) = "Harry";
     for (string name : names)
         cout << name << " ";
     cout << endl;
     // Pawel Harry Kamil
 
+
     names.pop_back();
     for (string name : names)
         cout << name << " ";
     cout << endl;
     // Pawel Harry
+
 
     /*names.clear();
     for (string name : names)
