@@ -7,7 +7,10 @@ using namespace std;
 
 int main()
 {
-    set<string> names = {"Pawel", "Mariusz", "Kamil", "Dominik", "Pawel", "Adam"};
+    // set<string> names = {"Pawel", "Mariusz", "Kamil", "Dominik", "Pawel", "Adam"};
+    
+    set<string> names;
+    names = {"Pawel", "Mariusz", "Kamil", "Dominik", "Pawel", "Adam"};
 
     for (string name : names)
         cout << name << " ";
