@@ -1,27 +1,30 @@
 #include <iostream>
 #include <windows.h>
+#include <string>
+#include <sstream>
+
 using namespace std;
-int dane[6];
-int rozmiar;
+int cells[6];
+int dimension;
 
 //-----------------------------
-void wyswietl_stos()
+void view_stack()
 {
     system("CLS");
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
 
     cout << endl;
     cout << "----------------" << endl;
-    cout << "ZAWARTOSC STOSU:" << endl;
+    cout << "STACK CONTENT:" << endl;
     cout << "----------------" << endl;
 
-    for (int i = rozmiar; i >= 1; i--)
+    for (int i = dimension; i >= 1; i--)
 
     {
-        cout << dane[i] << endl;
+        cout << cells[i] << endl;
     }
 
-    if (rozmiar == 0)
+    if (dimension == 0)
         cout << "pusty" << endl;
 
     cout << "----------------" << endl
@@ -33,37 +36,37 @@ void wyswietl_stos()
 //-----------------------------
 void push()
 {
-    if (rozmiar >= 5)
+    if (dimension >= 5)
 
     {
-        cout << "Stos pelny!";
+        cout << "Stack full!";
         Sleep(1000);
     }
     else
     {
         cout << endl
-             << "PUSH (jaka liczbe polozyc na stosie): ";
+             << "PUSH (how many to put on the stack): ";
 
-        rozmiar = rozmiar + 1;
-        cin >> dane[rozmiar];
+        dimension = dimension + 1;
+        cin >> cells[dimension];
     }
 }
 
 //-----------------------------
 void pop()
 {
-    if (rozmiar >= 1)
+    if (dimension >= 1)
 
     {
         cout << endl
-             << "POP - nastapi usuniecie ze stosu liczby: " << dane[rozmiar];
+             << "POP - number will be removed from the stack: " << cells[dimension];
         Sleep(2000);
 
-        rozmiar = rozmiar - 1;
+        dimension = dimension - 1;
     }
     else
     {
-        cout << "Stos pusty!";
+        cout << "ChoiEmpty stackce!";
         Sleep(1000);
     }
 }
@@ -71,20 +74,19 @@ void pop()
 void size()
 {
     cout << endl
-         << "Liczba elementow na stosie: " << rozmiar;
+         << "Liczba elementow na stosie: " << dimension;
     Sleep(2000);
 }
-
 //-----------------------------
 void empty()
 {
 
-    if (rozmiar == 0)
+    if (dimension == 0)
         cout << endl
-             << "EMPTY (stos pusty?) -> TRUE";
+             << "EMPTY (ChoiEmpty stackce?) -> TRUE";
     else
         cout << endl
-             << "EMPTY (stos pusty?) -> FALSE";
+             << "EMPTY (ChoiEmpty stackce?) -> FALSE";
     Sleep(2000);
 }
 
@@ -93,26 +95,29 @@ void empty()
 int main()
 {
 
-    int wybor;
-    rozmiar = 0;
+    string mystr;
+    int choice;
+    dimension = 0;
 
     do
 
     {
-        wyswietl_stos();
+        view_stack();
 
-        cout << "MENU GLOWNE STOSU:" << endl;
+        cout << "STACK MAIN MENU:" << endl;
         cout << "------------------------------------------" << endl;
-        cout << "1. PUSH (dodaje element na szczyt stosu) " << endl;
-        cout << "2. POP (usuwa element ze szczytu stosu) " << endl;
-        cout << "3. SIZE (ile elementow na stosie) " << endl;
-        cout << "4. EMPTY (czy stos jest pusty?) " << endl;
-        cout << "5. Koniec programu " << endl;
+        cout << "1. PUSH (adds an item to the top of the stack) " << endl;
+        cout << "2. POP (removes an item from the top of the stack) " << endl;
+        cout << "3. SIZE (how many items on the stack) " << endl;
+        cout << "4. EMPTY (is the stack empty?) " << endl;
+        cout << "5. Program End " << endl;
         cout << "------------------------------------------" << endl;
-        cout << "Wybor: ";
-        cin >> wybor;
 
-        switch (wybor)
+        cout << "Choice: ";
+        getline (cin, mystr);
+        stringstream(mystr) >> choice;
+
+        switch (choice)
 
         {
         case 1:
@@ -132,7 +137,7 @@ int main()
             break;
         }
 
-    } while (wybor != 5);
+    } while (choice != 5);
 
     return 0;
 }
