@@ -32,7 +32,16 @@ void view_stack()
 
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
+//-----------------------------
+int get_int()
+{
+    int var;
+    string mystr;
 
+    getline(std::cin, mystr);
+    stringstream(mystr) >> var;
+    return var;
+}
 //-----------------------------
 void push()
 {
@@ -48,10 +57,10 @@ void push()
              << "PUSH (how many to put on the stack): ";
 
         dimension = dimension + 1;
-        cin >> cells[dimension];
+        // cin >> cells[dimension];
+        cells[dimension] = get_int();
     }
 }
-
 //-----------------------------
 void pop()
 {
@@ -66,7 +75,7 @@ void pop()
     }
     else
     {
-        cout << "ChoiEmpty stackce!";
+        cout << "Stack is empty!";
         Sleep(1000);
     }
 }
@@ -83,10 +92,10 @@ void empty()
 
     if (dimension == 0)
         cout << endl
-             << "EMPTY (ChoiEmpty stackce?) -> TRUE";
+             << "EMPTY (stack empty?) -> TRUE";
     else
         cout << endl
-             << "EMPTY (ChoiEmpty stackce?) -> FALSE";
+             << "EMPTY (stack empty?) -> FALSE";
     Sleep(2000);
 }
 
@@ -95,7 +104,6 @@ void empty()
 int main()
 {
 
-    string mystr;
     int choice;
     dimension = 0;
 
@@ -114,8 +122,7 @@ int main()
         cout << "------------------------------------------" << endl;
 
         cout << "Choice: ";
-        getline (cin, mystr);
-        stringstream(mystr) >> choice;
+        choice = get_int();
 
         switch (choice)
 
