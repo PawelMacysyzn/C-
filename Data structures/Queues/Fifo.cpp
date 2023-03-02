@@ -68,7 +68,7 @@ void push()
     {
         cout << endl
              << "PUSH (what number to put in the queue): ";
-        cin >> cells[tail];
+        cells[tail] =  get_int();
         tail = tail + 1;
         dimension = dimension + 1;
     }
@@ -76,7 +76,7 @@ void push()
     {
         cout << endl
              << "PUSH (what number to put in the queue): ";
-        cin >> cells[tail];
+        cells[tail] =  get_int();
         tail = (tail + 1) % 5;
         dimension = dimension + 1;
     }
@@ -140,7 +140,7 @@ int main()
         cout << "5. Program End " << endl;
         cout << "------------------------------------------" << endl;
         cout << "Choice: ";
-        cin >> choice;
+        choice =  get_int();
 
         switch (choice)
         {
