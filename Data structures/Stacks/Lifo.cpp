@@ -8,7 +8,7 @@ int cells[6];
 int dimension;
 
 //-----------------------------
-void view_stack()
+void schow_stack()
 {
     system("CLS");
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
@@ -25,7 +25,7 @@ void view_stack()
     }
 
     if (dimension == 0)
-        cout << "pusty" << endl;
+        cout << "empty" << endl;
 
     cout << "----------------" << endl
          << endl;
@@ -110,7 +110,7 @@ int main()
     do
 
     {
-        view_stack();
+        schow_stack();
 
         cout << "STACK MAIN MENU:" << endl;
         cout << "------------------------------------------" << endl;
