@@ -76,3 +76,18 @@ int main()
 }*/
 
 /***********************************************************/
+
+int main()
+{
+    char ciag_1[] = "Hello";
+    char ciag_2[9] = "Hello";
+
+    cout << ciag_1 << " <size: " << sizeof(ciag_1) << ">" << endl;
+    // Hello <size: 6>
+    cout << ciag_2 << " <size: " << sizeof(ciag_2) << ">" << endl;
+    // Hello <size: 9>
+
+    return 0;
+}
+
+/***********************************************************/
