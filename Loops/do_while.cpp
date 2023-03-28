@@ -1,0 +1,1 @@
+// Petla do_while wykona się przynajmiej jeden raz

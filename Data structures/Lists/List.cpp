@@ -16,7 +16,7 @@ int get_int()
     int var;
     string mystr;
 
-    getline(std::cin, mystr);
+    getline(std::cin, mystr); // #include <string>
     stringstream(mystr) >> var;
     return var;
 }

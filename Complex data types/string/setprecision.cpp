@@ -7,7 +7,7 @@ using namespace std;
 
 void example_default(float a, float b, float c)
 {
-    cout << "default:\n";
+    cout << "default:\n";  // defaultfloat aby przywrócić domyślne ustawienia
     cout << a << endl
          << b << endl
          << c << endl;
@@ -102,7 +102,7 @@ int main()
     */
 
     // -------------------------------------------------------------
-    cout.precision(6);
+    cout.precision(6); // //  cout << setprecision(6);
     example_default(a, b, c);
     example_fixed(a, b, c);
     example_scientific(a, b, c);
