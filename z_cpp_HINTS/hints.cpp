@@ -106,3 +106,37 @@ int main()
 
 // /***********************************************************/
 
+// /***********************************************************/
+
+string string_to_lower(string str)
+{
+    string to_return;
+    for (auto elem : str)
+        to_return.push_back(tolower(elem));
+    return to_return;
+}
+
+string string_to_upper(string str)
+{
+    string to_return;
+    for (auto elem : str)
+        to_return.push_back(toupper(elem));
+    return to_return;
+}
+
+void example_of_to_upper_and_to_lower()
+{
+    string s1 = "Example of usage String";
+    cout << string_to_lower(s1) << endl;
+    // example of usage string
+    cout << string_to_upper(s1) << endl;
+    // EXAMPLE OF USAGE STRING
+}
+
+// /***********************************************************/
+
+int main()
+{
+    example_of_to_upper_and_to_lower();
+    return 0;
+}
