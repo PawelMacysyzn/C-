@@ -1,6 +1,8 @@
 #include <iostream>
 #include "pytanie.h"
-#include <fstream>
+
+#include <fstream> // A combination of ofstream and ifstream: creates, reads, and writes to files
+
 #include <cstdlib>
 #include <string>
 
@@ -8,10 +10,10 @@ using namespace std;
 
 void Pytanie::wczytaj()
 {
-    fstream plik;
-    plik.open("quiz.txt", ios::in);
+    fstream MyFile;
+    MyFile.open("quiz.txt", ios::in);
 
-    if (plik.good() == false)
+    if (MyFile.good() == false)
     {
         cout << "Nie udalo sie otworzyc pliku!";
         exit(0);
@@ -21,7 +23,7 @@ void Pytanie::wczytaj()
     int aktualny_nr = 1;
     string linia;
 
-    while (getline(plik, linia))
+    while (getline(MyFile, linia))
     {
         if (aktualny_nr == nr_linii)
             tresc = linia;
@@ -38,7 +40,7 @@ void Pytanie::wczytaj()
         aktualny_nr++;
     }
 
-    plik.close();
+    MyFile.close();
 }
 
 void Pytanie::zadaj()

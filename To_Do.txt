@@ -1,2 +1,11 @@
 • Linux
 1. Package Manager in Linux
+
+
+• GIT
+1. pull → fetch & merge
+2. fast-forward vs merge commit
+
+• DevOps 
+1. CI/CD  (Continuous integration / Continuous Delivery)
+2. SDLC
