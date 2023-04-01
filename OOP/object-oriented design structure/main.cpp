@@ -1,5 +1,8 @@
 #include <iostream>
-#include "pytanie.cpp"
+#include "pytanie.cpp" // na vsc
+// #include "pytanie.h" // wtedy trzeba uruchomic w cmd
+// // w katalogu wpisać  g++ -o main.cpp pytanie.cpp pytanie.h
+// // uruchomić main.exe
 
 using namespace std;
 

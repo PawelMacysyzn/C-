@@ -1,5 +1,6 @@
 #include <iostream>
 #include "event.h"
+//#include "event.cpp" // in vsc
 using namespace std;
 
 void Event::load()
