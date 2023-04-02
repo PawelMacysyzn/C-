@@ -35,6 +35,7 @@ void example_of_sum_with_reduce(vector<int> arr)
     // 15
 }
 
+// Wyswietla minimalny element vectora
 void example_min_element(vector<int> arr)
 {
     // *min_element() in STL
@@ -43,6 +44,7 @@ void example_min_element(vector<int> arr)
     // 2
 }
 
+// Wyswietla maksymalny element vectora
 void example_max_element(vector<int> arr)
 {
     // *max_element() in STL
