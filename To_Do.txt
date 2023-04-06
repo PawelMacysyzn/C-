@@ -9,3 +9,6 @@
 • DevOps 
 1. CI/CD  (Continuous integration / Continuous Delivery)
 2. SDLC
+
+• DevOps 
+1. vector -> RAII
