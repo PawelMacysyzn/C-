@@ -54,6 +54,8 @@ int main()
     delete h_value;
     delete[] h_array;
     delete h_vector;
+
+    std::cout << "DONE";
 }
 
 // Source: https://www.youtube.com/watch?v=wJ1L2nSIV1s&ab_channel=TheCherno
