@@ -1,4 +1,5 @@
 // std::fixed, std::scientific, std::hexfloat, std::defaultfloat
+// #format, #formatowanie, #wyswietlanie, #notacja naukowa
 
 #include <iostream>
 #include <iomanip> // setprecision
@@ -85,12 +86,16 @@ int main()
 
     cout << fixed << setprecision(2) << a << endl;
     // 4.59
+
     cout << fixed << setprecision(3) << a << endl;
     // 4.590
+
     cout << fixed << b << endl;
     // 3.000
+
     cout << fixed << setprecision(2) << c << endl;
     // 0.00
+
     cout << fixed << b << endl;
     // 3.00
 
