@@ -21,61 +21,25 @@ RED = "\033[31m"
 RESET = '\033[0m'
 
 
-
 def cmd_support():
+    '''
+    # cmd support
+    '''
+
     parser = argparse.ArgumentParser(description='Allows for cmd support')
 
-    parser.add_argument('--find', '-f', dest='search_string', type=str, help='Search string')
-    parser.set_defaults(search_string='glob')
+    parser.add_argument('--find', '-f', dest='search_string',
+                        type=str, help='Search string')
+    parser.add_argument('--where', '-w', dest='search_location',
+                        type=str, help='Search location')
+    parser.add_argument('--ignore', '-i', dest='ignored_folders',
+                        type=str, nargs='+', help='Ignored folders')
+
+    parser.set_defaults(search_string=None, ignored_folders=[])
 
     args = parser.parse_args()
 
-    return args.search_string
-
-search_string = cmd_support()
-print(search_string)
-
-def cmd_support_my() -> tuple:
-    '''
-    # Allows for cmd support #
-    Example:
-    py .\cleaner_exe.py --find 'looking_phrase'
-                or
-    py .\cleaner_exe.py -f 'looking_phrase'
-
-    * return tuple(actual_path, serch_string)
-    '''
-
-    actual_path = os.getcwd()
-
-    if len(sys.argv) <= 1:
-
-        # os.getcwd() returns current working directory of a proces
-        # zwraca bieżący katalog roboczy procesu
-        serch_string = 'glob'
-
-    else:
-
-        if len(sys.argv) > 3:
-
-            for e, each in enumerate(sys.argv):
-                print("[arg: {}] {:10s} {} ".format(
-                    e, sys.argv[e], type(sys.argv[e])))
-
-            raise Exception('Too many arguments !')
-
-        if sys.argv[1].lower() in ('--find', '-f'):
-            pass
-        else:
-            raise Exception("You must give the command '--find' or '-f' !")
-
-        if not sys.argv[2].isnumeric():
-            serch_string = sys.argv[2]
-
-        else:
-            raise Exception("The second argument must be 'type str' !")
-
-    return (actual_path, serch_string)
+    return args.search_string, args.search_location, args.ignored_folders
 
 
 def walk_thrue_files_by_walk(path: str, file_extension: str, ignored_folders: list) -> types.GeneratorType:
@@ -180,26 +144,27 @@ def main():
     ######################################
     ############ CODE HERE ###############
     ######################################
-
+    
     # test()
 
-    search_string = cmd_support()
+    search_string, search_location, ignored_folders = cmd_support()
+    # print(cmd_support())
 
-    # Tutaj możesz wywołać odpowiednie funkcje w zależności od wartości search_string
-    if search_string == 'glob':
-        # Wywołanie funkcji show_searching_files z odpowiednimi argumentami
-        show_searching_files('.', '.txt')
-    elif search_string == 'remove':
-        # Wywołanie funkcji remove_file z odpowiednimi argumentami
-        remove_file('file.txt')
+    if search_string is not None and search_location is not None and ignored_folders is not None:
+        show_searching_files(search_location, search_string, ignored_folders)
+        print("OPT_1")
+    elif search_string is not None:
+        show_searching_files(file_extension =search_string, ignored_folders=ignored_folders)
+        print("OPT_2")
     else:
-        # Inne przypadki obsługi search_string
-        pass
+        show_searching_files(ignored_folders=ignored_folders)
+        print("OPT_3")
 
     ######################################
     ################ END #################
     ######################################
     pass
+
 
 
 if __name__ == "__main__":
