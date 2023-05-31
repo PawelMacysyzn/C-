@@ -1,10 +1,11 @@
 
 
-# Show all filenames with .exe extension                        ☑
-# Remove them and get status                                    ☑
-# Add option list of folders to be ignored                      ☑
-# Add add-on to remove another extension e.g. (.txt, .py)       ☑
-# Add option in command prompt for that                         ☑
+# Show all filenames with .exe extension                                            ☑
+# Remove them and get status                                                        ☑
+# Add option list of folders to be ignored                                          ☑
+# Add add-on to remove another extension e.g. (.txt, .py)                           ☑
+# Add option in command prompt for that                                             ☑
+# Improve the code in cmd support(), reduce the number of if statements in main()   ☐
 
 
 ############### CODE #####################
