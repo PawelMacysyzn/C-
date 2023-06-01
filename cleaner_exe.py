@@ -1,11 +1,9 @@
-
-
 # Show all filenames with .exe extension                                            ☑
 # Remove them and get status                                                        ☑
 # Add option list of folders to be ignored                                          ☑
 # Add add-on to remove another extension e.g. (.txt, .py)                           ☑
 # Add option in command prompt for that                                             ☑
-# Improve the code in cmd support(), reduce the number of if statements in main()   ☐
+# Improve the code in cmd support(), reduce the number of if statements in main()   ☑
 
 
 ############### CODE #####################
@@ -28,14 +26,15 @@ def cmd_support():
     '''
 
     parser = argparse.ArgumentParser(description='Allows for cmd support')
+    group = parser.add_mutually_exclusive_group()
 
-    parser.add_argument('--find', '-f', dest='search_string',
-                        type=str, help='Search string')
-    parser.add_argument('--remove', '-r', dest='remove_string',
-                        type=str, help='Remove string')
-    parser.add_argument('--where', '-w', dest='search_location',
+    group.add_argument('-f', '--find', dest='search_string',
+                       type=str, help='Search string')
+    group.add_argument('-r', '--remove', dest='remove_string',
+                       type=str, help='Remove string')
+    parser.add_argument('-w', '--where', dest='search_location',
                         type=str, help='Search location')
-    parser.add_argument('--ignore', '-i', dest='ignored_folders',
+    parser.add_argument('-i', '--ignore', dest='ignored_folders',
                         type=str, nargs='+', help='Ignored folders')
 
     parser.set_defaults(search_string=None,
@@ -43,10 +42,38 @@ def cmd_support():
 
     args = parser.parse_args()
 
-    return args.search_string, args.remove_string, args.search_location, args.ignored_folders
+    ### LOGIC ###
+
+    if args.search_location is not None:
+        # Option in cmd: py .\cleaner_exe.py --find .exe --where C:\Users\pmacyszyn_adm\Documents\C++\CPP\TEST --ignore 'folder 1'
+        # or             py .\cleaner_exe.py --find .exe --where C:\Users\pmacyszyn_adm\Documents\C++\CPP\TEST
+        if args.search_string is not None:
+            show_searching_files(search_location=args.search_location,
+                                 file_extension=args.search_string, ignored_folders=args.ignored_folders)
+
+        # or             py .\cleaner_exe.py --remove .exe --where C:\Users\pmacyszyn_adm\Documents\C++\CPP\TEST --ignore 'folder 2'
+        # or             py .\cleaner_exe.py --remove .exe --where C:\Users\pmacyszyn_adm\Documents\C++\CPP\TEST
+        elif args.remove_string is not None:
+            remove_all_files(search_location=args.search_location,
+                             file_extension=args.remove_string, ignored_folders=args.ignored_folders)
+
+    # Option in cmd: py .\cleaner_exe.py --find .exe
+    # or             py .\cleaner_exe.py --remove .exe
+    elif args.search_location is None:
+        if args.search_string is not None:
+            show_searching_files(
+                file_extension=args.search_string, ignored_folders=args.ignored_folders)
+
+        elif args.remove_string is not None:
+            remove_all_files(search_location=os.getcwd(
+            ), file_extension=args.remove_string, ignored_folders=args.ignored_folders)
+
+        # Option in cmd: py .\cleaner_exe.py
+        else:
+            show_searching_files()
 
 
-def walk_thrue_files_by_walk(search_location: str, file_extension: str, ignored_folders: list) -> types.GeneratorType:
+def walk_thru_files_by_walk(search_location: str, file_extension: str, ignored_folders: list) -> types.GeneratorType:
     '''
     # Walk thru files by walk
     * search_location (str) - specified path
@@ -78,7 +105,7 @@ def show_searching_files(search_location: str = os.getcwd(), file_extension: str
     * file_extension (str) - searched phrase
     * ignored_folders (list) - list of folders to be ignored
     '''
-    generator_files = walk_thrue_files_by_walk(
+    generator_files = walk_thru_files_by_walk(
         search_location, file_extension, ignored_folders)
     print("="*90)
     for (num, elem) in enumerate(generator_files, start=1):
@@ -118,7 +145,7 @@ def remove_all_files(search_location: str, file_extension: str, ignored_folders:
         f"{CYELLOW}Are you sure you want to delete all files? (Yes/No): {RESET}")
     if confirmation.lower() == "yes":
 
-        generator_files = walk_thrue_files_by_walk(
+        generator_files = walk_thru_files_by_walk(
             search_location, file_extension, ignored_folders)
 
         for (num, elem) in enumerate(generator_files, start=1):
@@ -139,7 +166,7 @@ def test():
     ######################################
 
     my_test_folder = r"C:\Users\pmacyszyn_adm\Documents\C++\CPP\TEST"
-    file_extension = '.py'
+    file_extension = '.exe'
     ignored_folders = ["folder 2"]
 
     show_searching_files(my_test_folder, file_extension)
@@ -156,42 +183,7 @@ def main():
     ############ CODE HERE ###############
     ######################################
 
-    # print(cmd_support())
-    search_string, remove_string, search_location, ignored_folders = cmd_support()
-
-    # Option in cmd: py .\cleaner_exe.py --find .py --remove .py --where C:\Users\pmacyszyn_adm\Documents\C++\CPP\TEST --ignore folder1 folder2
-    if search_string is not None and remove_string is not None:
-        print("Error: Cannot use both --find and --remove options simultaneously")
-        return
-    else:
-
-        # Option in cmd: py .\cleaner_exe.py --find .py --where C:\Users\pmacyszyn_adm\Documents\C++\CPP\TEST --ignore 'folder 1'
-        # or             py .\cleaner_exe.py --remove .py --where C:\Users\pmacyszyn_adm\Documents\C++\CPP\TEST --ignore 'folder 2'
-        # or             py .\cleaner_exe.py --find .py --where C:\Users\pmacyszyn_adm\Documents\C++\CPP\TEST
-        # or             py .\cleaner_exe.py --remove .py --where C:\Users\pmacyszyn_adm\Documents\C++\CPP\TEST
-
-        if ((search_string is not None) or (remove_string is not None)) and search_location is not None:
-            if search_string is not None:
-                show_searching_files(search_location=search_location,
-                                     file_extension=search_string, ignored_folders=ignored_folders)
-            elif remove_string is not None:
-                remove_all_files(search_location=search_location,
-                                 file_extension=remove_string, ignored_folders=ignored_folders)
-
-        # Option in cmd: py .\cleaner_exe.py --find .py
-        # or             py .\cleaner_exe.py --remove .py
-
-        elif (search_string is not None) or (remove_string is not None):
-            if search_string is not None:
-                show_searching_files(file_extension=search_string)
-            elif remove_string is not None:
-                remove_all_files(search_location=os.getcwd(),
-                                 file_extension=remove_string)
-
-        # Option in cmd: py .\cleaner_exe.py
-
-        else:
-            show_searching_files()
+    cmd_support()
 
     ######################################
     ################ END #################
