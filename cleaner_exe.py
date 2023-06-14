@@ -59,6 +59,7 @@ def cmd_support():
 
     # Option in cmd: py .\cleaner_exe.py --find .exe
     # or             py .\cleaner_exe.py --remove .exe
+
     elif args.search_location is None:
         if args.search_string is not None:
             show_searching_files(
@@ -71,6 +72,9 @@ def cmd_support():
         # Option in cmd: py .\cleaner_exe.py
         else:
             show_searching_files()
+    # ToDo
+    # Przeplatanie walidacji parametrów z uruchomieniem algorytmu   //              show_searching_files()     remove_all_files()
+
 
 
 def walk_thru_files_by_walk(search_location: str, file_extension: str, ignored_folders: list) -> types.GeneratorType:
@@ -143,6 +147,7 @@ def remove_all_files(search_location: str, file_extension: str, ignored_folders:
 
     confirmation = input(
         f"{CYELLOW}Are you sure you want to delete all files? (Yes/No): {RESET}")
+    
     if confirmation.lower() == "yes":
 
         generator_files = walk_thru_files_by_walk(
