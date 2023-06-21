@@ -1,2 +1,4 @@
 Fold All   (Ctrl+K Ctrl+0)      folds all regions in the editor.
 Unfold All (Ctrl+K Ctrl+J)      unfolds all regions in the editor.
+
+Open in new window (Ctrl+K  o)
