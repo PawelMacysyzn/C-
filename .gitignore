@@ -4,3 +4,4 @@ test.cpp
 build
 TEST
 TEST copy
+*.code-workspace
