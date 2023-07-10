@@ -12,3 +12,18 @@
 
 • DevOps 
 1. vector -> RAII
+
+
+
+• Mentoring 
+1. Transformacja listy argumentów na elementy STLa    ?
+
+2. Wyświetlić parametry otrzymane przez funkcję main  ✓ 
+
+   1. Oczekiwany rezultat powinien być zapisany w `std::vector<std::string>` ✓ 
+
+   
+3. Przeparsować linię argumentów i zaprezentować w jakim trybie i z jakimi parametry uruchomiłby się program do usuwania plików EXE
+4. Zapoznanie się z `std::file_system` -> wyświetlenie drzewa plików
+   1. Osobna aplikacja, która po prostu testuje możliwości biblioteki
+   2. Najlepiej zdefiniowana w tym samym repozytorium co program z parsowaniem argumentów.
